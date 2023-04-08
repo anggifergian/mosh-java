@@ -11,6 +11,10 @@ public class Employee {
         return baseSalary + (extraHours * getHourlyRate());
     }
 
+    public int calculateWage() {
+        return calculateWage(0);
+    }
+
     private int getBaseSalary() {
         return baseSalary;
     }

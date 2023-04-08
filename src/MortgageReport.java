@@ -1,4 +1,5 @@
 import java.text.NumberFormat;
+import java.util.Locale;
 
 public class MortgageReport {
     private final NumberFormat currency;
@@ -6,7 +7,7 @@ public class MortgageReport {
 
     public MortgageReport(MortgageCalculator calculator) {
         this.calculator = calculator;
-        currency = NumberFormat.getCurrencyInstance();
+        currency = NumberFormat.getCurrencyInstance(new Locale("en", "US"));
     }
 
     public void printMortgage() {
@@ -14,8 +15,7 @@ public class MortgageReport {
         System.out.println();
         System.out.println("MORTGAGE");
         System.out.println("=================");
-        String formatted = currency.format(mortgage);
-        System.out.println("Monthly Payments: " + formatted);
+        System.out.println("Monthly Payments: " + currency.format(mortgage));
     }
 
     public void printPaymentSchedule() {
@@ -23,7 +23,7 @@ public class MortgageReport {
         System.out.println("PAYMENT SCHEDULE");
         System.out.println("=================");
         for (var balance : calculator.getRemainingBalances()) {
-            System.out.println(NumberFormat.getCurrencyInstance().format(balance));
+            System.out.println(currency.format(balance));
         }
     }
 }
